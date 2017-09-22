@@ -26,7 +26,7 @@ function get_output_dir() {
 # Main
 
 echo "=========================================================="
-echo "Starting S2I Gradle Build ....
+echo "Starting S2I Gradle Build ...."
 build_dir=$(get_output_dir)
 check_error "Cannot get output dir: $build_dir" $?
 cd "${S2I_DESTINATION}"
