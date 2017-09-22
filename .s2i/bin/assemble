@@ -19,7 +19,17 @@ function check_error() {
 
 function get_output_dir() {
   local dir=""
+  dir="${S2I_SOURCE_DIR}/build"
 
+  # Normalize dir
+  dir=$(echo ${dir} | tr -s /)
+  dir=${dir%/}
+  # The parent must exist but target/ won't exist yet
+  if [ ! -d $(dirname "${dir}") ]; then
+    echo "Please specify an existing build directory ARTIFACT_DIR (tried '$(dirname "${dir}")' which does not exist)"
+    exit 1
+  fi
+  echo ${dir}
 }
 
 # ############################################################################
@@ -29,6 +39,6 @@ echo "=========================================================="
 echo "Starting S2I Gradle Build ...."
 build_dir=$(get_output_dir)
 check_error "Cannot get output dir: $build_dir" $?
-cd "${S2I_DESTINATION}"
+cd "${S2I_SOURCE_DIR}"
 ls
 ./gradlew build test
