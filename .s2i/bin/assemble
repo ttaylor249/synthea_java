@@ -4,6 +4,7 @@
 source /usr/local/s2i/s2i-setup
 source /usr/local/s2i/common.sh
 
-echo "${S2I_DESTINATION}"
+echo "s2i destination: ${S2I_DESTINATION}"
+echo "pwd:" `pwd`
 cd "${S2I_DESTINATION}"
 ./gradlew build test
