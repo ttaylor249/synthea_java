@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# source some original files
+source /usr/local/s2i/s2i-setup
+source /usr/local/s2i/common.sh
+
+./gradlew build test
